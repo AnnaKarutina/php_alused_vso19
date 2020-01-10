@@ -27,3 +27,14 @@ echo '<hr>';
 foreach ($vso19 as $opilane){
   echo $opilane.'<br>';
 }
+
+$jaana = array(
+  'eesnimi' => 'Jaana',
+  'perenimi' => 'Šeffer'
+);
+echo '<pre>';
+print_r($jaana);
+echo '</pre>';
+foreach ($jaana as $element => $vaartus){
+  echo $element.' - '.$vaartus.'<br>';
+}
