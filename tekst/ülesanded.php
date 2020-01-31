@@ -74,4 +74,29 @@ $tyhikuIndeks = strpos($nimiJaPerenimi, ' ');
 $perenimi = strtolower(substr($nimiJaPerenimi,$tyhikuIndeks+1));
 $email = $nimi.'.'.$perenimi.'@khk.ee';
 echo $email;
+echo '<hr>';
+// regulaaravaldistega
+$nimiJaPerenimi = $_GET['nimijaperenimi'];
+$asendus = array(
+    'ä' => 'a',
+    'ö' => 'o',
+    'ü' => 'u',
+    'õ' => 'o',
+    'Ä' => 'A',
+    'Ö' => 'O',
+    'Ü' => 'U',
+    'Õ' => 'O',
+);
+foreach ($asendus as $otsi=>$asenda){
+    $nimiJaPerenimi = str_replace($otsi, $asenda, $nimiJaPerenimi);
+}
+$eesnimiRE = '/^[A-Z][a-z]* /';
+$perenimiRE = '/ [A-Z][a-z]*/';
+preg_match($eesnimiRE, $nimiJaPerenimi, $eesnimi);
+preg_match($perenimiRE, $nimiJaPerenimi, $perenimi);
+if(!empty($eesnimi) and !empty($perenimi)){
+    $kasutaja = strtolower(trim($eesnimi[0])).'.'.strtolower(trim($perenimi[0]));
+    echo $kasutaja.'@khk.ee';
+}
+
 
